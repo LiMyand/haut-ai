@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <index></index>
+    <index/>
   </div>
 </template>
 
@@ -8,17 +8,17 @@
 import index from './views/index.vue'
 </script>
 
-<style scoped>
+<style>
 * {
   margin: 0;
   padding: 0;
 }
-*body {
+body {
   margin: 0;
   padding: 0;
 }
-#app {
-  width: 100%;
-  height: 200vh;
+.row {
+  display: flex;
+  width: calc(100vw - 28px);
 }
 </style>
