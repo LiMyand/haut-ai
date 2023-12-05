@@ -1,62 +1,77 @@
 <script setup>
-import navBar from '../components/navBar.vue'
-import { getOne } from "../api/apiService.js";
+import navBar from '../components/navBar.vue';
+import homeHeader from '../components/homeHeader.vue';
 import { ref } from "vue";
-import carouselVue from "./carousel/carouselVue.vue";
-const { data } = await getOne();
+
 const backgroundImage = ref(new URL('../assets/myphoto.png', import.meta.url).href);
 
-console.log(data);
 
 </script>
 
 <template>
   <div class="text-center background" :style="{ backgroundImage: 'url(' + backgroundImage + ')' }">
-    <nav-bar></nav-bar>
-    <div class="title-content">
-      <h1 class="title">
-        Haut-Ai
-      </h1>
-      <hr class="divider" />
-      <div class="content">
-        <span>{{ data.hitokoto }}</span>
-      </div>
-    </div>
-    <div class="row margin">
-      <div class="col-md-7">
-        <div class="custom-div">
-          <div class="card-show-1 carousel-parent">
-            <carousel-vue></carousel-vue>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-5">
-        <div class="custom-div">
-          <div class="card-show-2">
-            <div><i></i>网站咨询</div>
-            <div>人数 17</div>
-            <div>人数 17</div>
-            <div>人数 17</div>
-            <div>人数 17</div>
-            <div>人数 17</div>
-            <div>人数 17</div>
-            <div>人数 17</div>
-            <div>人数 17</div>
-            <div>人数 17</div>
-          </div>
-        </div>
-      </div>
+  <nav-bar></nav-bar>
+    <suspense>
+      <home-header></home-header>
+    </suspense>
+  </div>
+  <div class="header">
+    <div>
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+           viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+          <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+          <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+          <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+        </g>
+      </svg>
     </div>
   </div>
-  <div class="container text-center">
-    <div class="row">
-      <div class="col-sm-8">col-sm-8</div>
-      <div class="col-sm-4">col-sm-4</div>
+  <div class="row">
+    <div class="col-8">
+      <div class="container float-md-end">
+        <div class="image-box">
+          <img src="../assets/myphoto.png" alt="Image">
+        </div>
+        <div class="text-box">
+          <p>这是文字内容</p>
+        </div>
+      </div>
+      <div class="container float-md-end">
+        <div class="image-box">
+          <img src="../assets/myphoto.png" alt="Image">
+        </div>
+        <div class="text-box">
+          <p>这是文字内容</p>
+        </div>
+      </div>
+      <div class="container float-md-end">
+        <div class="image-box">
+          <img src="../assets/myphoto.png" alt="Image">
+        </div>
+        <div class="text-box">
+          <p>这是文字内容</p>
+        </div>
+      </div>
+      <div class="container float-md-end">
+        <div class="image-box">
+          <img src="../assets/myphoto.png" alt="Image">
+        </div>
+        <div class="text-box">
+          <p>这是文字内容</p>
+        </div>
+      </div>
     </div>
+    <div class="col-4">col-4</div>
   </div>
 </template>
 
 <style scoped>
+@import url(//fonts.googleapis.com/css?family=Lato:300:400);
 * {
   padding: 0!important;
   margin: 0!important;
@@ -64,81 +79,109 @@ console.log(data);
 .background {
   width: 100%;
   height: 75vh;
-  background-image: v-bind('url(' + backgroundImage + ')');
   background-size: cover;
   background-position: center;
 }
-.title-content {
-  padding: 20px;
+
+body {
+  margin:0;
 }
-.title {
-  height: 2em;
-  line-height: 2em;
-  text-align: center;
-  font-size: 3em;
-  color: #333;
-  margin-bottom: 0.5em; /* 调整标题和分隔线之间的距离 */
+
+h1 {
+  font-family: 'Lato', sans-serif;
+  font-weight:300;
+  letter-spacing: 2px;
+  font-size:48px;
 }
-.divider {
-  border: 0;
-  height: 2px;
-  background: antiquewhite;
-  margin: 0.5em 0; /* 调整分隔线和内容之间的距离 */
+p {
+  font-family: 'Lato', sans-serif;
+  letter-spacing: 1px;
+  font-size:14px;
+  color: #333333;
 }
-.content {
-  text-align: center;
-  font-size: 1.2em;
-  color: white;
-  height: 3em;
-  line-height: 3em;
+
+.header {
+  position:relative;
+  text-align:center;
+  top: -50px;
+  color:white;
 }
-.margin {
-  margin-top: 3em!important;
+.waves {
+  position:relative;
+  width: 100%;
+  height:15vh;
+  margin-bottom:-7px; /*Fix for safari gap*/
+  min-height:100px;
+  max-height:150px;
 }
-.custom-div {
-  width: 95%;
+/* Animation */
+
+.parallax > use {
+  animation: move-forever 25s cubic-bezier(.55,.5,.45,.5)     infinite;
+}
+.parallax > use:nth-child(1) {
+  animation-delay: -2s;
+  animation-duration: 7s;
+}
+.parallax > use:nth-child(2) {
+  animation-delay: -3s;
+  animation-duration: 10s;
+}
+.parallax > use:nth-child(3) {
+  animation-delay: -4s;
+  animation-duration: 13s;
+}
+.parallax > use:nth-child(4) {
+  animation-delay: -5s;
+  animation-duration: 20s;
+}
+@keyframes move-forever {
+  0% {
+    transform: translate3d(-90px,0,0);
+  }
+  100% {
+    transform: translate3d(85px,0,0);
+  }
+}
+/*Shrinking for mobile*/
+@media (max-width: 768px) {
+  .waves {
+    height:40px;
+    min-height:40px;
+  }
+  .content {
+    height:30vh;
+  }
+  h1 {
+    font-size:24px;
+  }
+}
+.container {
+  position: relative;
+  height: 200px;
+  right: 3em;
+  display: flex;
+  width: 750px;
+  align-items: stretch; /* 确保子元素填满高度 */
+  padding: 10px!important;
+  border-radius: 10px;
+  border: 1px solid #ccc
+}
+.container:not(:first-child) {
+  margin-top: 20px!important;
+}
+.image-box {
+  flex: 1; /* 占据可用空间 */
+}
+
+.image-box img {
+  height: 100%; /* 图片高度填满容器 */
+  width: 300px; /* 自动调整宽度以保持图片比例 */
+  background-size: cover;
   border-radius: 10px;
 }
-.card-show-1, .card-show-2 {
-  margin: 10px;
-  border-radius: 10px;
-  width: 100%;
-  background-color: greenyellow;
-  height: 200px;
-}
-.card-show-2 {
-  overflow-y: auto;
-  max-height: 100%; /* 或者你希望的最大高度 */
-  scrollbar-width: none; /* 针对 Firefox 浏览器 */
-}
-.card-show-2::-webkit-scrollbar {
-  display: none;
-}
-.carousel-parent {
-  height: 200px;
-  width: 100%;
-  overflow: hidden;  /* 防止内容溢出 */
-}
-@media (min-width: 1200px) { /* 576px 是Bootstrap中sm的断点 */
-  .card-show-1 {
-    width: 650px;
-    background-color: rgba(229, 217, 217, 0.4);
-    height: 200px;
-    float: right;
-    position: relative;
-    left: -20px;
-  }
-  .card-show-2 {
-    width: 500px;
-    background-color: rgba(229, 217, 217, 0.4);
-    height: 200px;
-    float: left;
-  }
-}
-/* 当屏幕宽度大于等于sm */
-@media (min-width: 768px) { /* 576px 是Bootstrap中sm的断点 */
-  .custom-div {
-    width: 100%;
-  }
+.text-box {
+  flex: 2; /* 文本部分占据剩余空间 */
+  padding: 20px; /* 文本的内边距 */
 }
 </style>

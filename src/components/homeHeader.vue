@@ -1,0 +1,123 @@
+<script setup>
+import carouselVue from "./carousel/carouselVue.vue";
+import { getOne } from "../api/apiService.js";
+
+const { data } = await getOne();
+</script>
+
+<template>
+  <div class="title-content">
+    <h1 class="title">
+      Haut-Ai
+    </h1>
+    <hr class="divider" />
+    <div class="content">
+      <span>{{ data.hitokoto }}</span>
+    </div>
+  </div>
+  <div class="row margin">
+    <div class="col-md-7">
+      <div class="custom-div">
+        <div class="card-show-1 carousel-parent">
+          <carousel-vue></carousel-vue>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="custom-div">
+        <div class="card-show-2">
+          <div><i></i>网站咨询</div>
+          <div>人数 17</div>
+          <div>人数 17</div>
+          <div>人数 17</div>
+          <div>人数 17</div>
+          <div>人数 17</div>
+          <div>人数 17</div>
+          <div>人数 17</div>
+          <div>人数 17</div>
+          <div>人数 17</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+* {
+  padding: 0!important;
+  margin: 0!important;
+}
+.title-content {
+  padding: 20px;
+}
+.title {
+  height: 2em;
+  line-height: 2em;
+  text-align: center;
+  font-size: 3em;
+  color: #333;
+  margin-bottom: 0.5em; /* 调整标题和分隔线之间的距离 */
+}
+.divider {
+  border: 0;
+  height: 2px;
+  background: antiquewhite;
+  margin: 0.5em 0; /* 调整分隔线和内容之间的距离 */
+}
+.content {
+  text-align: center;
+  font-size: 1.2em;
+  color: white;
+  height: 3em;
+  line-height: 3em;
+}
+.margin {
+  margin-top: 3em!important;
+}
+.custom-div {
+  width: 95%;
+  border-radius: 10px;
+}
+.card-show-1, .card-show-2 {
+  margin: 10px;
+  border-radius: 10px;
+  width: 100%;
+  background-color: greenyellow;
+  height: 200px;
+}
+.card-show-2 {
+  overflow-y: auto;
+  max-height: 100%; /* 或者你希望的最大高度 */
+  scrollbar-width: none; /* 针对 Firefox 浏览器 */
+}
+.card-show-2::-webkit-scrollbar {
+  display: none;
+}
+.carousel-parent {
+  height: 200px;
+  width: 100%;
+  overflow: hidden;  /* 防止内容溢出 */
+}
+@media (min-width: 1200px) { /* 576px 是Bootstrap中sm的断点 */
+  .card-show-1 {
+    width: 650px;
+    background-color: rgba(229, 217, 217, 0.4);
+    height: 200px;
+    float: right;
+    position: relative;
+    left: -20px;
+  }
+  .card-show-2 {
+    width: 500px;
+    background-color: rgba(229, 217, 217, 0.4);
+    height: 200px;
+    float: left;
+  }
+}
+/* 当屏幕宽度大于等于sm */
+@media (min-width: 768px) { /* 576px 是Bootstrap中sm的断点 */
+  .custom-div {
+    width: 100%;
+  }
+}
+</style>
