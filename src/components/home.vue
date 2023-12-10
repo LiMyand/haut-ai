@@ -1,6 +1,7 @@
 <script setup>
 import navBar from '../components/navBar.vue';
 import homeHeader from '../components/homeHeader.vue';
+import footVue from './footVue.vue';
 import { ref } from "vue";
 
 const backgroundImage = ref(new URL('../assets/myphoto.png', import.meta.url).href);
@@ -32,8 +33,8 @@ const backgroundImage = ref(new URL('../assets/myphoto.png', import.meta.url).hr
     </div>
   </div>
   <div class="row">
-    <div class="col-8">
-      <div class="container float-md-end">
+    <div class="col-md-8">
+      <div class="container float-md-end col-md-12">
         <div class="image-box">
           <img src="../assets/myphoto.png" alt="Image">
         </div>
@@ -66,8 +67,53 @@ const backgroundImage = ref(new URL('../assets/myphoto.png', import.meta.url).hr
         </div>
       </div>
     </div>
-    <div class="col-4">col-4</div>
+    <div class="col-xl-4">
+      <!-- 标签 -->
+      <div class="w-50 h-25 tags-box">
+        <div class="tags-container d-flex flex-wrap justify-content-start">
+          <div class="tag">linux</div>
+          <div class="tag">mmd</div>
+          <div class="tag">windows</div>
+          <div class="tag">Another Tag</div>
+          <div class="tag">Another Tag</div>
+          <div class="tag">Another Tag</div>
+          <div class="tag">Another Tag</div>
+          <div class="tag">Another Tag</div>
+          <div class="tag">Another Tag</div>
+          <div class="tag">Another Tag</div>
+          <div class="tag">Another Tag</div>
+          <div class="tag">Another Tag</div>
+          <div class="tag">Another Tag</div>
+          <div class="tag">Another Tag</div>
+          <div class="tag">Another Tag</div>
+          <div class="tag">Another Tag</div>
+          <div class="tag">Another Tag</div>
+          <div class="tag">Another Tag</div>
+          <div class="tag">Another Tag</div>
+          <div class="tag">Another Tag</div>
+          <div class="tag">Another Tag</div>
+          <div class="tag">Another Tag</div>
+          <div class="tag">Another Tag</div>
+          <div class="tag">Another Tag</div>
+        </div>
+      </div>
+      <div class="w-50 h-25">
+        <div class="categories-container d-flex flex-wrap">
+          <div class="category">Category 1</div>
+          <div class="category">Category 2</div>
+          <!-- 更多分类 -->
+        </div>
+      </div>
+      <div class="w-50 h-25">
+        <div class="archives-container d-flex flex-wrap">
+          <div class="archive">Archive 1</div>
+          <div class="archive">Archive 2</div>
+          <!-- 更多归档 -->
+        </div>
+      </div>
+    </div>
   </div>
+  <foot-vue></foot-vue>
 </template>
 
 <style scoped>
@@ -184,4 +230,38 @@ p {
   flex: 2; /* 文本部分占据剩余空间 */
   padding: 20px; /* 文本的内边距 */
 }
+
+
+
+
+.card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+
+.tags-box {
+  overflow-y: scroll;
+  scrollbar-width: none; /* 针对 Firefox 浏览器 */
+}
+.tags-box::-webkit-scrollbar {
+  display: none;
+}
+
+.tag {
+  flex: 0 1 auto;
+  border-bottom: 1px dashed #ccc;
+  padding: ;
+}
+
+/* 分类和归档样式 */
+.categories-container, .archives-container {
+  flex-basis: 50%;
+}
+
+.category, .archive {
+  flex: 0 1 48%; /* 留出间隙 */
+}
+
 </style>
