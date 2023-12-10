@@ -1,11 +1,11 @@
 <template>
   <div id="app">
-    <index/>
+    <router-view path='/'></router-view>
   </div>
 </template>
 
 <script setup>
-import index from './views/index.vue'
+
 </script>
 
 <style>
@@ -16,9 +16,5 @@ import index from './views/index.vue'
 body {
   margin: 0;
   padding: 0;
-}
-.row {
-  display: flex;
-  width: calc(100vw - 28px);
 }
 </style>
